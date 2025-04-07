@@ -5,14 +5,14 @@ const FlightSearchForm = ({ onSearch, isLoading }) => {
     origin: "",
     destination: "",
     date: new Date().toISOString().split("T")[0],
-    passengers: 1,
+    passengers: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: name === "passengers" ? parseInt(value) : value,
+      [name]: value,
     }));
   };
 
@@ -22,60 +22,62 @@ const FlightSearchForm = ({ onSearch, isLoading }) => {
   };
 
   return (
-    <div className="search-form">
-      <h2>Find Flights</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Origin</label>
-          <input
-            type="text"
-            name="origin"
-            value={formData.origin}
-            onChange={handleChange}
-            required
-          />
-        </div>
+    <div>
+      <div className="search-form">
+        <h2>Find Flights</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Origin</label>
+            <input
+              type="text"
+              name="origin"
+              value={formData.origin}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <div className="form-group">
-          <label>Destination</label>
-          <input
-            type="text"
-            name="destination"
-            value={formData.destination}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label>Destination</label>
+            <input
+              type="text"
+              name="destination"
+              value={formData.destination}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <div className="form-group">
-          <label>Date</label>
-          <input
-            type="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-            min={formData.date}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label>Date</label>
+            <input
+              type="date"
+              name="date"
+              value={formData.date}
+              onChange={handleChange}
+              min={formData.date}
+              required
+            />
+          </div>
 
-        <div className="form-group">
-          <label>Passengers</label>
-          <input
-            type="number"
-            name="passengers"
-            min="1"
-            max="10"
-            value={formData.passengers}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label>Passengers</label>
+            <input
+              type="number"
+              name="passengers"
+              min="1"
+              max="10"
+              value={formData.passengers}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? "Searching..." : "Search Flights"}
-        </button>
-      </form>
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Searching..." : "Search Flights"}
+          </button>
+        </form>
+      </div>
 
       <style jsx>{`
         .search-form {

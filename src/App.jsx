@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="app">
       <FlightSearch />
-      
+
       <style jsx global>{`
         body {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;

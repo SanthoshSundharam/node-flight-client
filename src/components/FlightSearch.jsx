@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 import FlightSearchForm from "./FlightSearchForm";
 import FlightList from "./FlightList";
+import PassengerDetail from "./PassengerDetail";
 
 const FlightSearch = () => {
   const [flights, setFlights] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useState(null);
+  const [selectedFlight, setSelectedFlight] = useState(null);
 
-  // Convert date to day name (e.g., "Monday")
   const getDayFromDate = (dateString) => {
     const days = [
       "sunday",
@@ -35,18 +36,20 @@ const FlightSearch = () => {
         params: {
           origin: params.origin,
           destination: params.destination,
-          date: day, // Send the day name instead of date
+          date: day,
         },
       });
       setFlights(response.data);
     } catch (err) {
-      setError(
-        err.response?.data?.message || "No flights available for selected day"
-      );
+      setError(err.response?.data?.message || "No flights available for selected day");
       setFlights([]);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleBookNow = (flight) => {
+    setSelectedFlight(flight);
   };
 
   return (
@@ -63,8 +66,16 @@ const FlightSearch = () => {
             flights={flights}
             passengers={searchParams.passengers}
             selectedDate={searchParams.date}
+            onBookNow={handleBookNow}
           />
         )
+      )}
+
+      {selectedFlight && (
+        <PassengerDetail
+          passengerCount={searchParams.passengers}
+          selectedFlight={selectedFlight}
+        />
       )}
 
       <style jsx>{`

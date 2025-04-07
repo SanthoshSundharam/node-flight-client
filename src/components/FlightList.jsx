@@ -1,6 +1,6 @@
 import React from "react";
 
-const FlightList = ({ flights, passengers, selectedDate }) => {
+const FlightList = ({ flights, passengers, selectedDate, onBookNow }) => {
   if (!flights.length) {
     return <div className="no-flights">No flights found for selected day.</div>;
   }
@@ -19,18 +19,19 @@ const FlightList = ({ flights, passengers, selectedDate }) => {
       <table>
         <thead>
           <tr>
-            <th>Flight #</th>
+            <th>Flight Name</th>
             <th>Route</th>
             <th>Timings</th>
             <th>
               Price ({passengers} {passengers > 1 ? "passengers" : "passenger"})
             </th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {flights.map((flight) => (
             <tr key={flight.id}>
-              <td>{flight.flightNumber}</td>
+              <td>{flight.airline}</td>
               <td>
                 <div className="route">
                   <span className="origin">{flight.origin}</span>
@@ -40,11 +41,14 @@ const FlightList = ({ flights, passengers, selectedDate }) => {
               </td>
               <td>
                 <div className="timings">
-                  <div>Dep: {flight.departureTime}</div>
-                  <div>Arr: {flight.arrivalTime}</div>
+                  <div>Dep: {flight.departure_time}</div>
+                  <div>Arr: {flight.arrival_time}</div>
                 </div>
               </td>
               <td>${(flight.price * passengers).toFixed(2)}</td>
+              <td>
+                <button onClick={() => onBookNow(flight)}>Book Now</button>
+              </td>
             </tr>
           ))}
         </tbody>
