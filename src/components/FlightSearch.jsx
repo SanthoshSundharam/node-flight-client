@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import FlightSearchForm from "./FlightSearchForm";
-import FlightList from "./FlightList";
-import PassengerDetail from "./PassengerDetail";
+import FlightResult from "./FlightResult";
+import '../FlightSearch.css'
 
 const FlightSearch = () => {
   const [flights, setFlights] = useState([]);
@@ -41,15 +40,11 @@ const FlightSearch = () => {
       });
       setFlights(response.data);
     } catch (err) {
-      setError(err.response?.data?.message || "No flights available for selected day");
+      setError("No flights found for selected day.");
       setFlights([]);
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const handleBookNow = (flight) => {
-    setSelectedFlight(flight);
   };
 
   return (
@@ -57,47 +52,85 @@ const FlightSearch = () => {
       <FlightSearchForm onSearch={handleSearch} isLoading={isLoading} />
 
       {error && <div className="error">{error}</div>}
+      {isLoading && <div className="loading">Searching flights...</div>}
 
-      {isLoading ? (
-        <div className="loading">Searching flights...</div>
-      ) : (
-        searchParams && (
-          <FlightList
-            flights={flights}
-            passengers={searchParams.passengers}
-            selectedDate={searchParams.date}
-            onBookNow={handleBookNow}
-          />
-        )
-      )}
-
-      {selectedFlight && (
-        <PassengerDetail
-          passengerCount={searchParams.passengers}
+      {!isLoading && searchParams && (
+        <FlightResult
+          flights={flights}
+          passengers={searchParams.passengers}
+          selectedDate={searchParams.date}
           selectedFlight={selectedFlight}
+          onBookNow={(flight) => setSelectedFlight(flight)}
         />
       )}
-
-      <style jsx>{`
-        .container {
-          max-width: 800px;
-          margin: 0 auto;
-          padding: 20px;
-        }
-        .error {
-          color: #d32f2f;
-          padding: 10px;
-          background: #ffebee;
-          margin: 20px 0;
-          border-radius: 4px;
-        }
-        .loading {
-          padding: 20px;
-          text-align: center;
-        }
-      `}</style>
     </div>
   );
 };
 
+const FlightSearchForm = ({ onSearch, isLoading }) => {
+  const [formData, setFormData] = useState({
+    origin: "",
+    destination: "",
+    date: new Date().toISOString().split("T")[0],
+    passengers: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSearch(formData);
+  };
+
+  return (
+    <div className="container">
+      <form onSubmit={handleSubmit}>
+      <h2>Find Flights</h2>
+      <input
+        name="origin"
+        placeholder="Origin"
+        value={formData.origin}
+        onChange={handleChange}
+        required
+      />
+      <input
+        name="destination"
+        placeholder="Destination"
+        value={formData.destination}
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="date"
+        name="date"
+        value={formData.date}
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="number"
+        name="passengers"
+        min="1"
+        max="10"
+        value={formData.passengers}
+        onChange={handleChange}
+        required
+      />
+      <button type="submit" disabled={isLoading}>
+        {isLoading ? "Searching..." : "Search Flights"}
+      </button>
+    </form>
+    </div>
+    
+  );
+};
+
 export default FlightSearch;
+
+

@@ -1,0 +1,123 @@
+/* Booking Summary Container */
+.summary-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .summary-container h2 {
+    color: #1e40af;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+  }
+  
+  /* Key Details (Booking ID/Date) */
+  .summary-container p {
+    margin: 0.8rem 0;
+    color: #4b5563;
+  }
+  
+  .summary-container strong {
+    color: #1f2937;
+    font-weight: 600;
+  }
+  
+  /* Flight Card */
+  .flight-card {
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-left: 4px solid #3b82f6;
+    transition: transform 0.3s;
+  }
+  
+  .flight-card:hover {
+    transform: translateY(-3px);
+  }
+  
+  .flight-card h3 {
+    color: #1e40af;
+    margin-top: 0;
+    font-size: 1.3rem;
+  }
+  
+  .flight-card p {
+    margin: 0.5rem 0;
+    color: #4b5563;
+  }
+  
+  /* Passengers List */
+  .summary-container h3 {
+    color: #1e40af;
+    margin: 1.5rem 0 1rem;
+    font-size: 1.3rem;
+  }
+  
+  .summary-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+  
+  .summary-container li {
+    background: #f9fafb;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    border-left: 3px solid #10b981;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Total Amount Highlight */
+  .summary-container p:last-child {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1e40af;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 2px dashed #e5e7eb;
+  }
+  
+  /* No Data Message */
+  .no-data {
+    text-align: center;
+    color: #6b7280;
+    padding: 2rem;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin: 2rem;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 600px) {
+    .summary-container {
+      padding: 1.5rem;
+      margin: 1rem;
+    }
+  
+    .flight-card {
+      padding: 1rem;
+    }
+  }
+
+  @keyframes checkmark {
+    0% { opacity: 0; transform: scale(0.5); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  
+  .summary-container h2::after {
+    content: "✓";
+    color: #10b981;
+    margin-left: 0.5rem;
+    animation: checkmark 0.6s ease-out;
+  }

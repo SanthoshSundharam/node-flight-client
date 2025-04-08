@@ -1,0 +1,155 @@
+/* Flight Results Container */
+.flight-results-container {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .flight-results-container h2 {
+    color: #1e40af;
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+    text-align: center;
+  }
+  
+  /* Table Styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+  }
+  
+  th, td {
+    padding: 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  th {
+    background-color: #f3f4f6;
+    color: #1f2937;
+    font-weight: 600;
+  }
+  
+  tr:hover {
+    background-color: #f9fafb;
+  }
+  
+  /* Buttons in Table */
+  table button {
+    padding: 0.5rem 1rem;
+    background: linear-gradient(45deg, #1e40af, #3b82f6);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  
+  table button:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+  }
+  
+  /* Passenger Form */
+  .passenger-form {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f9fafb;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .passenger-form h3 {
+    color: #1e40af;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .passenger-details-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+  }
+  
+  .passenger-details-group input,
+  .passenger-details-group select {
+    padding: 0.7rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: border-color 0.3s;
+  }
+  
+  .passenger-details-group input:focus,
+  .passenger-details-group select:focus {
+    outline: none;
+    border-color: #3b82f6;
+  }
+  
+  /* Commission & Total */
+  .commission-section {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+  }
+  
+  .commission-section input {
+    padding: 0.7rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    margin-right: 0.5rem;
+  }
+  
+  .commission-section h4 {
+    color: #1e40af;
+    margin-top: 0.5rem;
+  }
+  
+  /* Submit Button */
+  .submit-booking-btn {
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(45deg, #10b981, #34d399);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .submit-booking-btn:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* No Flights Message */
+  .no-flights {
+    text-align: center;
+    color: #6b7280;
+    padding: 1.5rem;
+    background: #f9fafb;
+    border-radius: 8px;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    table {
+      font-size: 0.9rem;
+    }
+  
+    th, td {
+      padding: 0.5rem;
+    }
+  
+    .passenger-details-group {
+      grid-template-columns: 1fr;
+    }
+  }
